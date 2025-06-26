@@ -28,7 +28,7 @@ public class CommentServiceImpl implements CommentService{
 
     @Override
     public Page<CommentDTO> getList(Long bno, int page) {
-        // select * from comment where bno = #{bno} limit page, 5;
+        // select * from comment where bno = #{bno}
         Pageable pageable = PageRequest.of(page, 5, Sort.by("cno").descending());
         Page<Comment> list = commentRepository.findByBno(bno, pageable);
         return list.map(this::convertEntityToDto);
