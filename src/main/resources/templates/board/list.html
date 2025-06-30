@@ -36,17 +36,26 @@
         <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">title</th>
+            <th scope="col" colspan="2">title</th>
             <th scope="col">writer</th>
             <th scope="col">reg_date</th>
+            <th scope="col">read_count</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="bvo:${ph.list}">
             <th scope="row">[[${bvo.bno}]]</th>
-            <td><a th:href="@{/board/detail(bno=${bvo.bno})}">[[${bvo.title}]]</a></td>
+            <td><a th:href="@{/board/detail(bno=${bvo.bno})}">
+                [[${bvo.title}]]</a>
+
+            </td>
+            <td>
+                <span class="badge rounded-pill text-bg-success">cmt:[[${bvo.cmtQty}]]</span>
+                <span class="badge rounded-pill text-bg-warning">file:[[${bvo.fileQty}]]</span>
+            </td>
             <td>[[${bvo.writer}]]</td>
             <td>[[${bvo.regDate}]]</td>
+            <td>[[${bvo.readCount}]]</td>
         </tr>
         </tbody>
     </table>

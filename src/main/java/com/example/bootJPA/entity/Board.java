@@ -32,4 +32,10 @@ public class Board extends TimeBase {
     private String writer;
     @Column(length = 2000, nullable = false)
     private String content;
+    @Column(name = "read_count", columnDefinition = "int default 0")
+    private int readCount;
+    @Column(name = "cmt_qty", columnDefinition = "int default 0")
+    private int cmtQty;
+    @Column(name = "file_qty", columnDefinition = "int default 0")
+    private int fileQty;
 }

@@ -1,5 +1,12 @@
 console.log("boardComment js in");
 
+let cmtWriter = document.querySelectorAll(".cmtWriter");
+console.log(cmtWriter[0].innerText);
+
+const csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+const csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
+console.log(csrfToken);
+
 document.getElementById('cmtAddBtn').addEventListener('click',()=>{
     const cmtText = document.getElementById('cmtText');
     const cmtWriter = document.getElementById('cmtWriter');
@@ -42,10 +49,10 @@ function spreadCommentList(bno, page=1){
 				li +=`${cvo.content}`;
 				li +=`</div>`;
 				li +=`<span class="badge bg-dark rounded-pill">${cvo.regDate}</span>`;
-				               
-                li +=`<button type="button" class="btn btn-outline-warning mod" data-bs-toggle="modal" data-bs-target="#myModal">e</button>`;
-                li +=`<button type="button" class="btn btn-outline-danger del">x</button>`;
-                                              
+				if(cmtWriter[0].innerText !== "로그인을 해주세요." && userEmail === cvo.writer){
+                    li +=`<button type="button" class="btn btn-outline-warning mod" data-bs-toggle="modal" data-bs-target="#myModal">e</button>`;
+                    li +=`<button type="button" class="btn btn-outline-danger del">x</button>`;
+                }
 				li +=`</li>`;
                 ul.innerHTML += li;
             }
@@ -124,7 +131,8 @@ async function modifyCommentToServer(cmtModData) {
         const config = {
             method : 'put',
             headers:{
-                'content-type' : 'application/json; charset=utf-8'
+                'content-type' : 'application/json; charset=utf-8',
+               [csrfHeader] : csrfToken
             },
             body : JSON.stringify(cmtModData)
         }
@@ -139,11 +147,14 @@ async function modifyCommentToServer(cmtModData) {
 // 삭제
 async function removeCommentToServer(cno) {
     try {
-        // const url = `/comment/remove/${cno}`;
-        // const config = {
-        //     method : 'delete'
-        // }
-        const resp = await fetch(`/comment/remove/${cno}`, {method : 'delete'});
+         const url = `/comment/remove/${cno}`;
+        const config = {
+            method:'delete',
+            headers : {
+                [csrfHeader] : csrfToken
+            }
+        }
+        const resp = await fetch(url, config);
         const result = await resp.text();
         return result;
     } catch (error) {
@@ -156,7 +167,8 @@ async function postCommentToServer(cmtData) {
         const config={
             method : 'post',
             headers:{
-                'content-type':'application/json; charset=utf-8'
+                'content-type':'application/json; charset=utf-8',
+                 [csrfHeader] : csrfToken
             },
             body: JSON.stringify(cmtData)
         };

@@ -4,6 +4,9 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="UTF-8">
+    <meta name="_csrf" th:content="${_csrf.token}" />
+    <meta name="_csrf_header" th:content="${_csrf.headerName}" />
+
     <title>spring Boot_JPA</title>
     <!--/* 부트스트랩 연결링크 달기 */-->
     <link rel="stylesheet" th:href="@{/dist/css/bootstrap.min.css}">

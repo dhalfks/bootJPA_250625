@@ -29,11 +29,11 @@ public class securityConfig {
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         // csrf => disable() : 완성 후 풀기
         return http
-                .csrf(csrf -> csrf.disable())
+//                .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/dist/**","/js/**","/image/**","/upload/**","/",
                                 "/index","/board/list/**","/board/detail/**", "/comment/list/**",
-                                "/user/join","/user/login").permitAll()
+                                "/user/join","/user/login","/error/**").permitAll()
                         .requestMatchers("/user/list").hasAnyRole("ADMIN")
                         .anyRequest().authenticated()
                 )

@@ -27,6 +27,9 @@ public interface BoardService {
                 .title(boardDTO.getTitle())
                 .writer(boardDTO.getWriter())
                 .content(boardDTO.getContent())
+                .readCount(boardDTO.getReadCount())
+                .cmtQty(boardDTO.getCmtQty())
+                .fileQty(boardDTO.getFileQty())
                 .build();
     }
     
@@ -39,6 +42,9 @@ public interface BoardService {
                 .title(board.getTitle())
                 .writer(board.getWriter())
                 .content(board.getContent())
+                .readCount(board.getReadCount())
+                .cmtQty(board.getCmtQty())
+                .fileQty(board.getFileQty())
                 .regDate(board.getRegDate())
                 .modDate(board.getModDate())
                 .build();
