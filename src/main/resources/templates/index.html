@@ -6,6 +6,36 @@
 
 <div class="container-md" layout:fragment="content">
     <h1> My Spring Boot_JPA Project </h1>
+    <div class="row align-items-start">
+        <div class="col mt-5">
+            <h3>Best_view Post</h3>
+            <div class="card" style="width: 18rem;" th:each="boardDTO:${bestList}">
+                <div class="card-body">
+                    <a th:href="@{/board/detail(bno=${boardDTO.bno})}" >
+                        <h5 class="card-title">[[${boardDTO.title}]]</h5>
+                    </a>
+                    <p class="card-text">[[${boardDTO.regDate}]]</p>
+                    <span class="badge rounded-pill text-bg-primary">readCount [[${boardDTO.readCount}]]</span>
+                    <span class="badge rounded-pill text-bg-success">cmt [[${boardDTO.cmtQty}]]</span>
+                    <span class="badge rounded-pill text-bg-warning">file [[${boardDTO.fileQty}]]</span>
+                </div>
+            </div>
+        </div>
+        <div class="col mt-5">
+            <h3>Best_Comment Post</h3>
+            <div class="card" style="width: 18rem;" th:each="boardDTO:${bestCommentList}">
+                <div class="card-body">
+                    <a th:href="@{/board/detail(bno=${boardDTO.bno})}" >
+                        <h5 class="card-title">[[${boardDTO.title}]]</h5>
+                    </a>
+                    <p class="card-text">[[${boardDTO.regDate}]]</p>
+                    <span class="badge rounded-pill text-bg-primary">readCount [[${boardDTO.readCount}]]</span>
+                    <span class="badge rounded-pill text-bg-success">cmt [[${boardDTO.cmtQty}]]</span>
+                    <span class="badge rounded-pill text-bg-warning">file [[${boardDTO.fileQty}]]</span>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <th:block >
         <input type="hidden" id="modMsg" th:value="${modMsg}">

@@ -91,4 +91,8 @@ public interface BoardService {
     Page<BoardDTO> getList(int pageNo, String type, String keyword);
 
     long fileRemove(String uuid);
+
+    List<BoardDTO> getBestList();
+
+    List<BoardDTO> getBestCommentList();
 }

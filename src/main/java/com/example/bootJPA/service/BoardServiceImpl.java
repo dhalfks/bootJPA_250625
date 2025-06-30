@@ -188,6 +188,25 @@ public class BoardServiceImpl implements BoardService{
         return file.get().getBno();
     }
 
+    @Override
+    public List<BoardDTO> getBestList() {
+        List<Board> best = boardRepository.findTop5ByOrderByReadCountDesc();
+        log.info(">>>> best >> {}", best);
+        List<BoardDTO> bestList = best.stream()
+                .map(this :: convertEntityToDto)
+                .toList();
+        return bestList;
+    }
+
+    @Override
+    public List<BoardDTO> getBestCommentList() {
+        List<Board> bestComment = boardRepository.findTop5ByOrderByCmtQtyDesc();
+        List<BoardDTO> bestCommentList = bestComment.stream()
+                .map(this :: convertEntityToDto)
+                .toList();
+        return bestCommentList;
+    }
+
 
 
     /* save() => id 가 없으면 insert / id가 있으면 update
