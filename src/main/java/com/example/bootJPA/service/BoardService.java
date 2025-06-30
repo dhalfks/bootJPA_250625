@@ -14,6 +14,7 @@ public interface BoardService {
     // 추상 메서드만 가능한 인터페이스
     // 메서드가 default(접근제어자) 구현 가능.
     Long insert(BoardFileDTO boardFileDTO);
+    Long insert(BoardDTO boardDTO);
 
     /* BoardDTO => Board 객체로 변환
     * BoardDTO(class) : bno, title, writer, content, regDate, modDate

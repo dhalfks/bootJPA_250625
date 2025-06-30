@@ -48,6 +48,11 @@ public class BoardServiceImpl implements BoardService{
         return bno;
     }
 
+    @Override
+    public Long insert(BoardDTO boardDTO) {
+        return boardRepository.save(convertDtoToEntity(boardDTO)).getBno();
+    }
+
     private long fileSave(List<FileDTO> fileList, long bno){
         if(bno > 0 && fileList != null){
             for(FileDTO fileDTO : fileList){
