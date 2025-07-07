@@ -7,7 +7,7 @@
 <div class="container-md" layout:fragment="content">
     <h1> My Spring Boot_JPA Project </h1>
     <div class="row align-items-start">
-        <div class="col mt-5">
+        <div class="col mt-5 row-gap-3">
             <h3>Best_view Post</h3>
             <div class="card" style="width: 18rem;" th:each="boardDTO:${bestList}">
                 <div class="card-body">
@@ -21,7 +21,7 @@
                 </div>
             </div>
         </div>
-        <div class="col mt-5">
+        <div class="col mt-5 row-gap-3">
             <h3>Best_Comment Post</h3>
             <div class="card" style="width: 18rem;" th:each="boardDTO:${bestCommentList}">
                 <div class="card-body">
